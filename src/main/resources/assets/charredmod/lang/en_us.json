@@ -1,3 +1,4 @@
 {
-  "block.charredmod.example_block": "Test Block"
+  "block.charredmod.example_block": "Test Block",
+  "item.charredmod.icon": "Icon"
 }

@@ -1,6 +1,7 @@
 package io.github.charredgrass.charredmod;
 
 import com.mojang.logging.LogUtils;
+import io.github.charredgrass.charredmod.init.ItemInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -24,6 +25,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
+import static io.github.charredgrass.charredmod.init.ItemInit.TEST_ITEM;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(CharredMod.MODID)
 public class CharredMod
@@ -37,7 +40,7 @@ public class CharredMod
     // Create a Deferred Register to hold Items which will all be registered under the "examplemod" namespace
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
-    public static final Block B = new Block(BlockBehaviour.Properties.of(Material.STONE));
+//    public static final Block B = new Block(BlockBehaviour.Properties.of(Material.STONE));
 
     // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
     public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE)));
@@ -55,6 +58,8 @@ public class CharredMod
         BLOCKS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         ITEMS.register(modEventBus);
+
+        ItemInit.ITEMS.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -74,6 +79,8 @@ public class CharredMod
     {
         if (event.getTab() == CreativeModeTabs.BUILDING_BLOCKS)
             event.accept(EXAMPLE_BLOCK_ITEM);
+        if (event.getTab() == CreativeModeTabs.TOOLS_AND_UTILITIES)
+            event.accept(ItemInit.TEST_ITEM);
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
