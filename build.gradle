@@ -4,7 +4,8 @@ plugins {
     id 'net.minecraftforge.gradle' version '5.1.+'
 }
 
-version = '0.0.1'
+//MCVERSION-MAJORMOD.MAJORAPI.MINOR.PATCH
+version = '1.19.3-0.44.0.1'
 group = 'io.github.charredgrass.charredmod' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'charredmod'
 
