@@ -3,9 +3,9 @@ package io.github.charredgrass.charredmod;
 import com.mojang.logging.LogUtils;
 import io.github.charredgrass.charredmod.init.ItemInit;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -25,7 +25,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
-import static io.github.charredgrass.charredmod.init.ItemInit.TEST_ITEM;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(CharredMod.MODID)
@@ -46,6 +45,7 @@ public class CharredMod
     public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE)));
     // Creates a new BlockItem with the id "examplemod:example_block", combining the namespace and path
     public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties()));
+
 
     public CharredMod()
     {
@@ -80,7 +80,14 @@ public class CharredMod
         if (event.getTab() == CreativeModeTabs.BUILDING_BLOCKS)
             event.accept(EXAMPLE_BLOCK_ITEM);
         if (event.getTab() == CreativeModeTabs.TOOLS_AND_UTILITIES)
-            event.accept(ItemInit.TEST_ITEM);
+            event.accept(ItemInit.ITEM_ICON);
+    }
+
+    @SubscribeEvent
+    public void onRegisterCreativeModeTabs(CreativeModeTabEvent.Register event) {
+        event.registerCreativeModeTab(new ResourceLocation(MODID, "creative_mode_tab"), (builder) -> {
+            
+        });
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -90,6 +97,8 @@ public class CharredMod
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
     }
+
+
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

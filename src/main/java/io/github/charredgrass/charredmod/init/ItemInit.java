@@ -12,7 +12,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, CharredMod.MODID);
-    public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("icon",
+    public static final RegistryObject<Item> ITEM_ICON = ITEMS.register("icon",
             () -> new Item(new Item.Properties()));
+
 
 }
