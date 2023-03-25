@@ -2,7 +2,9 @@ package io.github.charredgrass.charredmod;
 
 import com.mojang.logging.LogUtils;
 import io.github.charredgrass.charredmod.init.ItemInit;
+import io.github.charredgrass.charredmod.init.ModCreativeTabs;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.CreativeModeTab;
@@ -24,6 +26,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
+
+import static io.github.charredgrass.charredmod.init.ModCreativeTabs.MOD_TAB;
 
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -66,6 +70,7 @@ public class CharredMod
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -79,16 +84,10 @@ public class CharredMod
     {
         if (event.getTab() == CreativeModeTabs.BUILDING_BLOCKS)
             event.accept(EXAMPLE_BLOCK_ITEM);
-        if (event.getTab() == CreativeModeTabs.TOOLS_AND_UTILITIES)
+        if (event.getTab() == ModCreativeTabs.MOD_TAB)
             event.accept(ItemInit.ITEM_ICON);
     }
 
-    @SubscribeEvent
-    public void onRegisterCreativeModeTabs(CreativeModeTabEvent.Register event) {
-        event.registerCreativeModeTab(new ResourceLocation(MODID, "creative_mode_tab"), (builder) -> {
-            
-        });
-    }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
