@@ -1,6 +1,7 @@
 package io.github.charredgrass.charredmod.init;
 
 import io.github.charredgrass.charredmod.CharredMod;
+import io.github.charredgrass.charredmod.items.KineticDisplacer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
@@ -14,6 +15,8 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, CharredMod.MODID);
     public static final RegistryObject<Item> ITEM_ICON = ITEMS.register("icon",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> KINETIC_DISPLACER = ITEMS.register("kinetic_displacer",
+            () -> new KineticDisplacer(new Item.Properties()));
 
 
 }
