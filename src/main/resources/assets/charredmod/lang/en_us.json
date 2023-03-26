@@ -1,4 +1,6 @@
 {
   "block.charredmod.example_block": "Test Block",
-  "item.charredmod.icon": "Icon"
+  "item.charredmod.icon": "Icon",
+  "item_group.charredmod.charredmod": "CharredMod",
+  "item.charredmod.kinetic_displacer": "Kinetic Displacer"
 }

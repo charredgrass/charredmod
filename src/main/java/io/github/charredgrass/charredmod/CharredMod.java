@@ -80,12 +80,13 @@ public class CharredMod
         LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
     }
 
-    private void addCreative(CreativeModeTabEvent.BuildContents event)
-    {
+    private void addCreative(CreativeModeTabEvent.BuildContents event) {
         if (event.getTab() == CreativeModeTabs.BUILDING_BLOCKS)
             event.accept(EXAMPLE_BLOCK_ITEM);
-        if (event.getTab() == ModCreativeTabs.MOD_TAB)
+        if (event.getTab() == ModCreativeTabs.MOD_TAB) {
             event.accept(ItemInit.ITEM_ICON);
+            event.accept(ItemInit.KINETIC_DISPLACER);
+        }
     }
 
 
