@@ -26,7 +26,7 @@ public class KineticBurst extends Item {
             player.getCooldowns().addCooldown(this, 5);
             return super.use(world, player, hand);
         }
-        Vec3 burst = new Vec3(vel.x, 0.01, vel.z).normalize().scale(DASH_INTENSITY);
+        Vec3 burst = new Vec3(vel.x, 0.0, vel.z).normalize().scale(DASH_INTENSITY).add(0.0, 0.4F, 0.0);
         player.addDeltaMovement(burst);
         player.getCooldowns().addCooldown(this, 5);
         return super.use(world, player, hand);
