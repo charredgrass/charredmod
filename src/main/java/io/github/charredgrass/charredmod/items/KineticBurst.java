@@ -26,11 +26,8 @@ public class KineticBurst extends Item {
             player.getCooldowns().addCooldown(this, 5);
             return super.use(world, player, hand);
         }
-        if (Math.abs(vel.x) > Math.abs(vel.z)) { //west-east
-            player.addDeltaMovement(new Vec3(DASH_INTENSITY * vel.x / Math.abs(vel.x), 0.0F, 0.0F));
-        } else { //north-south
-            player.addDeltaMovement(new Vec3(0.0F, 0.0F, DASH_INTENSITY * vel.z / Math.abs(vel.z)));
-        }
+        Vec3 burst = new Vec3(vel.x, 0.01, vel.z).normalize().scale(DASH_INTENSITY);
+        player.addDeltaMovement(burst);
         player.getCooldowns().addCooldown(this, 5);
         return super.use(world, player, hand);
     }

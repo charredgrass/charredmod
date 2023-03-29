@@ -2,5 +2,8 @@
   "block.charredmod.example_block": "Test Block",
   "item.charredmod.icon": "Icon",
   "item_group.charredmod.charredmod": "CharredMod",
-  "item.charredmod.kinetic_displacer": "Kinetic Displacer"
+  "item.charredmod.kinetic_displacer": "Kinetic Displacer",
+  "item.charredmod.telestaff": "Telestaff",
+  "item.charredmod.kinetic_fruit": "Kinetic Fruit",
+  "item.charredmod.kinetic_burst": "Kinetic Burst"
 }
