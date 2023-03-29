@@ -20,8 +20,8 @@ public class KineticDisplacer extends Item {
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
 //        player.setPos(player.getX(), player.getY() + 10.0, player.getZ());
 //        player.setDeltaMovement(0.0, 10.0D, 0.0);
-//        player.addDeltaMovement(new Vec3(0.0, 10.0, 0.0));
-        player.addDeltaMovement(CoordMath.getLookDirection(player).scale(10.0D));
+        player.addDeltaMovement(new Vec3(0.0, 10.0, 0.0));
+//        player.addDeltaMovement(CoordMath.getLookDirection(player).scale(10.0D));
         player.getCooldowns().addCooldown(this, 20);
         return super.use(world, player, hand);
     }
