@@ -2,6 +2,7 @@ package io.github.charredgrass.charredmod.init;
 
 import io.github.charredgrass.charredmod.CharredMod;
 import io.github.charredgrass.charredmod.items.KineticDisplacer;
+import io.github.charredgrass.charredmod.items.Telestaff;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
@@ -17,6 +18,9 @@ public class ItemInit {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> KINETIC_DISPLACER = ITEMS.register("kinetic_displacer",
             () -> new KineticDisplacer(new Item.Properties()));
+
+    public static final RegistryObject<Item> TELESTAFF = ITEMS.register("telestaff",
+            () -> new Telestaff(new Item.Properties()));
 
 
 }

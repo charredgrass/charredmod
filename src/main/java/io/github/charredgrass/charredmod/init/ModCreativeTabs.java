@@ -26,7 +26,7 @@ public class ModCreativeTabs {
                                 .icon(() -> new ItemStack(ItemInit.ITEM_ICON.get())).build();
                     }
                 );
-            LOGGER.info("creative tabs registering eeeeeeeeeeeee");
+            LOGGER.info("creative tabs registered");
 
     }
 }

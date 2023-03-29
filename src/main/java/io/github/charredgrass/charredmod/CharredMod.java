@@ -76,8 +76,8 @@ public class CharredMod
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-        LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
+        LOGGER.info("CharredMod starting common setup");
+//        LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
     }
 
     private void addCreative(CreativeModeTabEvent.BuildContents event) {
@@ -86,6 +86,7 @@ public class CharredMod
         if (event.getTab() == ModCreativeTabs.MOD_TAB) {
             event.accept(ItemInit.ITEM_ICON);
             event.accept(ItemInit.KINETIC_DISPLACER);
+            event.accept(ItemInit.TELESTAFF);
         }
     }
 
