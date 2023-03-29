@@ -2,6 +2,8 @@ package io.github.charredgrass.charredmod.util;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -44,5 +46,15 @@ public class CoordMath {
         float x = -Mth.sin(-yRot * ((float)Math.PI / 180F) - (float)Math.PI);
         Vec3 target = eyes.add((double)x * range, 0.0D, (double)z * range);
         return world.clip(new ClipContext(eyes, target, ClipContext.Block.OUTLINE, fluidMode, player));
+    }
+
+    public static Vec3 getLookDirection(Entity entity) {
+        float xRot = entity.getXRot() * ((float)Math.PI / 180F);
+        float yRot = entity.getYRot() * ((float)Math.PI / 180F);
+        float yAdjust = -Mth.cos(xRot);
+        float x = Mth.sin(yRot) * yAdjust;
+        float y = -Mth.sin(xRot);
+        float z = -Mth.cos(yRot) * yAdjust;
+        return new Vec3(x, y, z);
     }
 }

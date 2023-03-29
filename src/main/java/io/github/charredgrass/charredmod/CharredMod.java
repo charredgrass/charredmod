@@ -87,6 +87,7 @@ public class CharredMod
             event.accept(ItemInit.ITEM_ICON);
             event.accept(ItemInit.KINETIC_DISPLACER);
             event.accept(ItemInit.TELESTAFF);
+            event.accept(ItemInit.KINETIC_FRUIT);
         }
     }
 
