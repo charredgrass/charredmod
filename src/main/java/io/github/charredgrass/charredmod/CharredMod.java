@@ -1,6 +1,7 @@
 package io.github.charredgrass.charredmod;
 
 import com.mojang.logging.LogUtils;
+import io.github.charredgrass.charredmod.init.EntityInit;
 import io.github.charredgrass.charredmod.init.ItemInit;
 import io.github.charredgrass.charredmod.init.ModCreativeTabs;
 import net.minecraft.client.Minecraft;
@@ -64,6 +65,7 @@ public class CharredMod
         ITEMS.register(modEventBus);
 
         ItemInit.ITEMS.register(modEventBus);
+        EntityInit.ENTITIES.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -89,6 +91,8 @@ public class CharredMod
             event.accept(ItemInit.TELESTAFF);
             event.accept(ItemInit.KINETIC_FRUIT);
             event.accept(ItemInit.KINETIC_BURST);
+            event.accept(ItemInit.AIR_SLAM);
+            event.accept(ItemInit.BOOM_LAUNCHER);
         }
     }
 

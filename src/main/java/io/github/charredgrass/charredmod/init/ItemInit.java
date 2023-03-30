@@ -27,4 +27,7 @@ public class ItemInit {
     public static final RegistryObject<Item> AIR_SLAM = ITEMS.register("air_slam",
             () -> new AirSlam(new Item.Properties()));
 
+    public static final RegistryObject<Item> BOOM_LAUNCHER = ITEMS.register("boom_launcher",
+            () -> new BoomLauncher(new Item.Properties()));
+
 }
