@@ -12,6 +12,9 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.network.NetworkHooks;
 
 public class ExplodingArrowEntity extends AbstractArrow {
+
+    private int age = 0;
+
     public ExplodingArrowEntity(EntityType<? extends AbstractArrow> entityType, Level world) {
         super(entityType, world);
     }
@@ -26,6 +29,17 @@ public class ExplodingArrowEntity extends AbstractArrow {
 
     private void boom() {
         this.level.explode(this, this.getX(), this.getY(), this.getZ(), 1.0F, true, Level.ExplosionInteraction.TNT);
+        this.discard();
+    }
+
+    @Override
+    public void tick() {
+        age++;
+        if (age >= 20) {
+            this.boom();
+            return;
+        }
+        super.tick();
     }
 
     @Override
@@ -36,14 +50,14 @@ public class ExplodingArrowEntity extends AbstractArrow {
 
     @Override
     protected void onHitBlock(BlockHitResult target) {
-//        super.onHitBlock(target);
+        super.onHitBlock(target);
         this.boom();
     }
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-
-        return NetworkHooks.getEntitySpawningPacket(this);
+        return super.getAddEntityPacket();
+//        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
