@@ -1,5 +1,6 @@
 package io.github.charredgrass.charredmod.entities;
 
+import com.mojang.logging.LogUtils;
 import io.github.charredgrass.charredmod.init.EntityInit;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -9,10 +10,14 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.slf4j.Logger;
 
 public class SplittingArrowEntity extends BaseArrow {
     private int splits = 1;
     private static final double SPLIT_RATIO = 0.5; //[0,1] right to fwd
+    private static final int FUSE = 10;
+
+    private static final Logger LOGGER = LogUtils.getLogger();
 
     public SplittingArrowEntity(EntityType<? extends AbstractArrow> entityType, Level world) {
         super(entityType, world);
@@ -30,13 +35,13 @@ public class SplittingArrowEntity extends BaseArrow {
         super(entityType, x, y, z, shooter, world);
     }
 
-    public void setNonSplitting() {
-        this.splits = 0;
+    public void setSplits(int s) {
+        this.splits = s;
     }
 
     public void split() {
         if (this.splits <= 0 || this.inGround) return;
-        splits--;
+//        LOGGER.info("splitting! " + this.splits);
         Vec3 upside = this.getUpVector(0.5F);
         Vec3 vel = this.getDeltaMovement();
         Vec3 perpRight = vel.cross(upside);
@@ -49,8 +54,8 @@ public class SplittingArrowEntity extends BaseArrow {
                 this.getX(), this.getY(), this.getZ(), (LivingEntity) this.getOwner(), this.level);
         left.setDeltaMovement(splitLeft);
         right.setDeltaMovement(splitRight);
-        left.setNonSplitting();
-        right.setNonSplitting();
+        left.setSplits(this.splits - 1);
+        right.setSplits(this.splits - 1);
         this.level.addFreshEntity(left);
         this.level.addFreshEntity(right);
         this.discard();
@@ -58,9 +63,11 @@ public class SplittingArrowEntity extends BaseArrow {
 
     @Override
     public void tick() {
-        if (this.age >= 10 && this.splits >= 1) {
+        if (this.age >= FUSE && this.splits >= 1 && !this.inGround) {
             this.split();
             return;
+        } else if (this.inGround && this.splits >= 1) {
+            this.splits = 0;
         }
         super.tick();
     }

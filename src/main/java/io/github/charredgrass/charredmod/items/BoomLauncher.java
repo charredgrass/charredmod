@@ -22,6 +22,7 @@ public class BoomLauncher extends Item {
 //            ExplodingArrowEntity arrow = new ExplodingArrowEntity(EntityInit.EXPLODING_ARROW.get(), player, world);
             SplittingArrowEntity arrow = new SplittingArrowEntity(EntityInit.SPLITTING_ARROW.get(), player, world);
 //            arrow.setDeltaMovement(CoordMath.getLookDirection(player).normalize().scale(6.0));
+            arrow.setSplits(10);
             arrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 3.0F, 1.0F);
             world.addFreshEntity(arrow);
         }
