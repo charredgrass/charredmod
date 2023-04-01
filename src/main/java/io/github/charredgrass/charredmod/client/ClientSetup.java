@@ -1,7 +1,7 @@
 package io.github.charredgrass.charredmod.client;
 
 import io.github.charredgrass.charredmod.CharredMod;
-import io.github.charredgrass.charredmod.client.render.ExplodingArrowRenderer;
+import io.github.charredgrass.charredmod.client.render.*;
 import io.github.charredgrass.charredmod.init.EntityInit;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
@@ -14,5 +14,6 @@ public class ClientSetup {
     @SubscribeEvent
     public static void doSetup(FMLClientSetupEvent event) {
         EntityRenderers.register(EntityInit.EXPLODING_ARROW.get(), ExplodingArrowRenderer::new);
+        EntityRenderers.register(EntityInit.SPLITTING_ARROW.get(), SplittingArrowRenderer::new);
     }
 }

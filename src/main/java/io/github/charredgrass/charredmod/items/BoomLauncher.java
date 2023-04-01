@@ -1,6 +1,7 @@
 package io.github.charredgrass.charredmod.items;
 
 import io.github.charredgrass.charredmod.entities.ExplodingArrowEntity;
+import io.github.charredgrass.charredmod.entities.SplittingArrowEntity;
 import io.github.charredgrass.charredmod.init.EntityInit;
 import io.github.charredgrass.charredmod.util.CoordMath;
 import net.minecraft.world.InteractionHand;
@@ -18,8 +19,10 @@ public class BoomLauncher extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         if (!player.level.isClientSide()) {
-            ExplodingArrowEntity arrow = new ExplodingArrowEntity(EntityInit.EXPLODING_ARROW.get(), player, world);
-            arrow.setDeltaMovement(CoordMath.getLookDirection(player).normalize().scale(3.0));
+//            ExplodingArrowEntity arrow = new ExplodingArrowEntity(EntityInit.EXPLODING_ARROW.get(), player, world);
+            SplittingArrowEntity arrow = new SplittingArrowEntity(EntityInit.SPLITTING_ARROW.get(), player, world);
+//            arrow.setDeltaMovement(CoordMath.getLookDirection(player).normalize().scale(6.0));
+            arrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 3.0F, 1.0F);
             world.addFreshEntity(arrow);
         }
         return super.use(world, player, hand);
