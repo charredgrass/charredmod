@@ -1,5 +1,6 @@
 package io.github.charredgrass.charredmod.entities;
 
+import io.github.charredgrass.charredmod.init.EntityInit;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.EntityType;
@@ -42,9 +43,9 @@ public class SplittingArrowEntity extends BaseArrow {
         Vec3 perpLeft = perpRight.scale(-1.0);
         Vec3 splitRight = vel.scale(1-SPLIT_RATIO).add(perpRight.scale(SPLIT_RATIO));
         Vec3 splitLeft = vel.scale(1-SPLIT_RATIO).add(perpLeft.scale(SPLIT_RATIO));
-        SplittingArrowEntity left = new SplittingArrowEntity((EntityType<? extends AbstractArrow>) this.getType(),
+        SplittingArrowEntity left = new SplittingArrowEntity(EntityInit.SPLITTING_ARROW.get(),
                 this.getX(), this.getY(), this.getZ(), (LivingEntity) this.getOwner(), this.level);
-        SplittingArrowEntity right = new SplittingArrowEntity((EntityType<? extends AbstractArrow>) this.getType(),
+        SplittingArrowEntity right = new SplittingArrowEntity(EntityInit.SPLITTING_ARROW.get(),
                 this.getX(), this.getY(), this.getZ(), (LivingEntity) this.getOwner(), this.level);
         left.setDeltaMovement(splitLeft);
         right.setDeltaMovement(splitRight);
@@ -59,6 +60,7 @@ public class SplittingArrowEntity extends BaseArrow {
     public void tick() {
         if (this.age >= 10 && this.splits >= 1) {
             this.split();
+            return;
         }
         super.tick();
     }
