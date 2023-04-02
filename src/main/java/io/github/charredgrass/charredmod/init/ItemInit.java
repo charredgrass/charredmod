@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, CharredMod.MODID);
     public static final RegistryObject<Item> ITEM_ICON = ITEMS.register("icon",
-            () -> new Item(new Item.Properties()));
+            () -> new Icon(new Item.Properties()));
     public static final RegistryObject<Item> KINETIC_DISPLACER = ITEMS.register("kinetic_displacer",
             () -> new KineticDisplacer(new Item.Properties()));
 
