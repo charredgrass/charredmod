@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 import java.util.ArrayList;
 
 public class SplittingArrowEntity extends BaseArrow {
-    private int splits = 1;
+    private int splits = 0;
     private static final double SPLIT_RATIO = 0.5; //[0,1] right to fwd
     private static final int FUSE = 10;
     private static final int NUM_SHOTS = 10;
@@ -34,17 +34,25 @@ public class SplittingArrowEntity extends BaseArrow {
         super(entityType, shooter, world);
     }
 
-    public SplittingArrowEntity(EntityType<? extends AbstractArrow> entityType, double x, double y, double z, LivingEntity shooter, Level world) {
+    public SplittingArrowEntity(EntityType<? extends AbstractArrow> entityType, LivingEntity shooter,
+                                Level world, int splits) {
+        super(entityType, shooter, world);
+        this.splits = splits;
+    }
+
+    public SplittingArrowEntity(EntityType<? extends AbstractArrow> entityType, double x, double y, double z,
+                                LivingEntity shooter, Level world) {
         super(entityType, x, y, z, shooter, world);
     }
 
-    public void setSplits(int s) {
-        this.splits = s;
+    public SplittingArrowEntity(EntityType<? extends AbstractArrow> entityType, double x, double y, double z,
+                                LivingEntity shooter, Level world, int splits) {
+        super(entityType, x, y, z, shooter, world);
+        this.splits = splits;
     }
 
     public void split() {
-        if (this.splits <= 0 || this.inGround) return;
-        LOGGER.info("splitting! " + this.splits + " . " + (1.0 / ((double) NUM_SHOTS / 2.0)));
+        LOGGER.info("splitting! " + this.splits);
         Vec3 upside = this.getUpVector(0.5F);
         Vec3 vel = this.getDeltaMovement();
         Vec3 perpRight = vel.cross(upside);
@@ -55,17 +63,16 @@ public class SplittingArrowEntity extends BaseArrow {
             Vec3 vRight = vel.scale(1-angle).add(perpRight.scale(angle));
             Vec3 vLeft = vel.scale(1-angle).add(perpLeft.scale(angle));
             SplittingArrowEntity right = new SplittingArrowEntity(EntityInit.SPLITTING_ARROW.get(),
-                    this.getX(), this.getY(), this.getZ(), (LivingEntity) this.getOwner(), this.level);
+                    this.getX(), this.getY(), this.getZ(), (LivingEntity) this.getOwner(), this.level,
+                    this.splits - 1);
             SplittingArrowEntity left = new SplittingArrowEntity(EntityInit.SPLITTING_ARROW.get(),
-                    this.getX(), this.getY(), this.getZ(), (LivingEntity) this.getOwner(), this.level);
+                    this.getX(), this.getY(), this.getZ(), (LivingEntity) this.getOwner(), this.level,
+                    this.splits - 1);
             right.setDeltaMovement(vRight);
             left.setDeltaMovement(vLeft);
-            right.setSplits(this.splits - 1);
-            left.setSplits(this.splits - 1);
             this.level.addFreshEntity(right);
             this.level.addFreshEntity(left);
         }
-        
         this.discard();
     }
 

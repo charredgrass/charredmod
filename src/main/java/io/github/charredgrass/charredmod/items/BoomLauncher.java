@@ -20,9 +20,8 @@ public class BoomLauncher extends Item {
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         if (!player.level.isClientSide()) {
 //            ExplodingArrowEntity arrow = new ExplodingArrowEntity(EntityInit.EXPLODING_ARROW.get(), player, world);
-            SplittingArrowEntity arrow = new SplittingArrowEntity(EntityInit.SPLITTING_ARROW.get(), player, world);
+            SplittingArrowEntity arrow = new SplittingArrowEntity(EntityInit.SPLITTING_ARROW.get(), player, world, 3);
 //            arrow.setDeltaMovement(CoordMath.getLookDirection(player).normalize().scale(6.0));
-            arrow.setSplits(3);
             arrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 3.0F, 1.0F);
             world.addFreshEntity(arrow);
         }
