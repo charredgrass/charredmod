@@ -27,9 +27,9 @@ public class PacketSetLauncher {
             ServerPlayer player = ctx.get().getSender();
             if (player != null) {
                 CharredMod.LOGGER.info("Handling");
-                Vec3 v = player.getDeltaMovement();
+                Vec3 v = player.getPosition(0.5F);
                 CharredMod.LOGGER.info("stuff: " + v.x + " " + v.y+ " " + v.z);
-                player.addDeltaMovement(new Vec3(0.0, 10.0, 0.0));
+//                player.addDeltaMovement(new Vec3(0.0, 10.0, 0.0));
             }
         });
         ctx.get().setPacketHandled(true);
