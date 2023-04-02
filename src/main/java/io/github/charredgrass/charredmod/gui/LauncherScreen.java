@@ -1,7 +1,11 @@
 package io.github.charredgrass.charredmod.gui;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.gui.components.EditBox;
+import io.github.charredgrass.charredmod.CharredMod;
+import io.github.charredgrass.charredmod.network.ModPacketHandler;
+import io.github.charredgrass.charredmod.network.PacketSetLauncher;
+import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
@@ -13,6 +17,12 @@ public class LauncherScreen extends Screen {
     @Override
     protected void init() {
         super.init();
+        this.addRenderableWidget(
+                Button.builder(Component.literal("Gaming"), (Button b) -> {
+                    CharredMod.LOGGER.info("BUTTON CLICKED SEND PACKETING TIME");
+                    ModPacketHandler.INSTANCE.sendToServer(new PacketSetLauncher(1));
+                }).build()
+        );
     }
 
     @Override

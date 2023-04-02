@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import io.github.charredgrass.charredmod.init.EntityInit;
 import io.github.charredgrass.charredmod.init.ItemInit;
 import io.github.charredgrass.charredmod.init.ModCreativeTabs;
+import io.github.charredgrass.charredmod.network.ModPacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -38,7 +39,7 @@ public class CharredMod
     // Define mod id in a common place for everything to reference
     public static final String MODID = "charredmod";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     // Create a Deferred Register to hold Items which will all be registered under the "examplemod" namespace
@@ -72,6 +73,8 @@ public class CharredMod
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+
+        ModPacketHandler.register();
 
     }
 
