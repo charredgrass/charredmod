@@ -9,6 +9,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 
 public class LauncherScreen extends Screen {
@@ -30,6 +31,14 @@ public class LauncherScreen extends Screen {
                     Minecraft.getInstance().player.addDeltaMovement(new Vec3(0.0, 10.0, 0.0));
                 }).pos(this.width/2, this.height/2).build()
         );
+        ResourceLocation rl = new ResourceLocation(CharredMod.MODID, "textures/gui/button.png");
+        ImageButton ib = new ImageButton(startDrawX, startDrawY,
+                128, 128, 0, 0, 0,
+                rl, 128, 128,
+                (Button b) -> {
+                    Minecraft.getInstance().player.addDeltaMovement(new Vec3(0.1, 10.0, 0.0));
+                });
+        this.addRenderableWidget(ib);
     }
 
     @Override
