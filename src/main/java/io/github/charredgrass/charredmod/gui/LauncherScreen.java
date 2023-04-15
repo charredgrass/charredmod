@@ -32,18 +32,22 @@ public class LauncherScreen extends Screen {
                     Minecraft.getInstance().player.addDeltaMovement(new Vec3(0.0, 10.0, 0.0));
                 }).pos(this.width/2, this.height/2).build()
         );
-        ResourceLocation rl = new ResourceLocation(CharredMod.MODID, "textures/gui/button.png");
-        ImageButton ib = new ImageButton(startDrawX, startDrawY,
-                128, 128, 0, 0, 0,
-                rl, 128, 128,
-                (Button b) -> {
-                    Minecraft.getInstance().player.addDeltaMovement(new Vec3(0.1, 10.0, 0.0));
-                });
+        ResourceLocation button, hovered, selected, hoveredselected;
+        button = new ResourceLocation(CharredMod.MODID, "textures/gui/button.png");
+        hovered = new ResourceLocation(CharredMod.MODID, "textures/gui/hovered.png");
+        selected = new ResourceLocation(CharredMod.MODID, "textures/gui/selected.png");
+        hoveredselected = new ResourceLocation(CharredMod.MODID, "textures/gui/hoveredselected.png");
+//        ImageButton ib = new ImageButton(startDrawX, startDrawY,
+//                128, 128, 0, 0, 0,
+//                rl, 128, 128,
+//                (Button b) -> {
+//                    Minecraft.getInstance().player.addDeltaMovement(new Vec3(0.1, 10.0, 0.0));
+//                });
 //        this.addRenderableWidget(ib);
-        ToggleImageButton tib = new ToggleImageButton(startDrawX, startDrawY, 128, 128,
+        ToggleImageButton tib = new ToggleImageButton(startDrawX, startDrawY, 32, 32,
                 Component.literal("juegos"), (Button b) -> {
             Minecraft.getInstance().player.addDeltaMovement(new Vec3(0.1, 10.0, 0.0));
-        }, rl, 128, 128);
+        }, button, hovered, selected, hoveredselected, 32, 32);
         this.addRenderableWidget(tib);
     }
 

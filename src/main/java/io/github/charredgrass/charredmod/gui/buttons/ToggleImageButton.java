@@ -11,11 +11,12 @@ public class ToggleImageButton extends Button {
 
     private final int imgWidth, imgHeight;
     private boolean toggleState;
-    private final ResourceLocation img, hovered, selected;
+    private final ResourceLocation img, hovered, selected, hoveredselected;
 
 
     public ToggleImageButton(int x, int y, int w, int h, Component component, OnPress onPress,
-                             ResourceLocation img, ResourceLocation hovered, ResourceLocation selected,
+                             ResourceLocation img, ResourceLocation hovered,
+                             ResourceLocation selected, ResourceLocation hoveredselected,
                              int imgW, int imgH) {
         super(x, y, w, h, component, onPress, Button.DEFAULT_NARRATION);
         this.imgWidth = imgW;
@@ -24,10 +25,12 @@ public class ToggleImageButton extends Button {
         this.img = img;
         this.hovered = hovered;
         this.selected = selected;
+        this.hoveredselected = hoveredselected;
     }
 
     protected ResourceLocation getCurrImg() {
-        return (toggleState ? selected : (this.isHovered() ? hovered : img));
+        return (toggleState ? (this.isHovered() ? hoveredselected : selected)
+                : (this.isHovered() ? hovered : img));
     }
 
     @Override
