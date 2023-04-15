@@ -34,11 +34,22 @@ public class ToggleImageButton extends Button {
     }
 
     @Override
-    public void render(PoseStack pose, int x, int y, float partialTick) {
-        //note: x,y = mouse pos
-//        super.render(pose, x, y, partialTick);
-        RenderSystem.setShaderTexture(0, this.getCurrImg());
-        blit(pose, this.getX(), this.getY(), 0, 0, this.width, this.height, this.imgWidth, this.imgHeight);
+    public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+        if (this.visible) {
+            //stuff from super.render in ToggleImageButton
+            this.isHovered = mouseX >= this.getX() && mouseY >= this.getY()
+                    && mouseX < this.getX() + this.width && mouseY < this.getY() + this.height;
+            RenderSystem.setShaderTexture(0, this.getCurrImg());
+            blit(pose, this.getX(), this.getY(), 0, 0,
+                    this.width, this.height, this.imgWidth, this.imgHeight);
+        }
+
+    }
+
+    @Override
+    public void onPress() {
+        this.toggle();
+        super.onPress();
     }
 
     public boolean isSelected() {
@@ -47,5 +58,9 @@ public class ToggleImageButton extends Button {
 
     public void setToggleState(boolean toggleState) {
         this.toggleState = toggleState;
+    }
+
+    public void toggle() {
+        this.toggleState = !this.toggleState;
     }
 }
