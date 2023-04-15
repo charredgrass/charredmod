@@ -3,6 +3,7 @@ package io.github.charredgrass.charredmod.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.charredgrass.charredmod.CharredMod;
+import io.github.charredgrass.charredmod.gui.buttons.ToggleImageButton;
 import io.github.charredgrass.charredmod.network.ModPacketHandler;
 import io.github.charredgrass.charredmod.network.PacketSetLauncher;
 import net.minecraft.client.Minecraft;
@@ -38,7 +39,12 @@ public class LauncherScreen extends Screen {
                 (Button b) -> {
                     Minecraft.getInstance().player.addDeltaMovement(new Vec3(0.1, 10.0, 0.0));
                 });
-        this.addRenderableWidget(ib);
+//        this.addRenderableWidget(ib);
+        ToggleImageButton tib = new ToggleImageButton(startDrawX, startDrawY, 128, 128,
+                Component.literal("juegos"), (Button b) -> {
+            Minecraft.getInstance().player.addDeltaMovement(new Vec3(0.1, 10.0, 0.0));
+        }, rl, 128, 128);
+        this.addRenderableWidget(tib);
     }
 
     @Override
