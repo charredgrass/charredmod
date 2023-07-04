@@ -63,15 +63,15 @@ public class SplittingArrowEntity extends BaseArrow {
             Vec3 vRight = vel.scale(1-angle).add(perpRight.scale(angle));
             Vec3 vLeft = vel.scale(1-angle).add(perpLeft.scale(angle));
             SplittingArrowEntity right = new SplittingArrowEntity(EntityInit.SPLITTING_ARROW.get(),
-                    this.getX(), this.getY(), this.getZ(), (LivingEntity) this.getOwner(), this.level,
+                    this.getX(), this.getY(), this.getZ(), (LivingEntity) this.getOwner(), this.getCommandSenderWorld(),
                     this.splits - 1);
             SplittingArrowEntity left = new SplittingArrowEntity(EntityInit.SPLITTING_ARROW.get(),
-                    this.getX(), this.getY(), this.getZ(), (LivingEntity) this.getOwner(), this.level,
+                    this.getX(), this.getY(), this.getZ(), (LivingEntity) this.getOwner(), this.getCommandSenderWorld(),
                     this.splits - 1);
             right.setDeltaMovement(vRight);
             left.setDeltaMovement(vLeft);
-            this.level.addFreshEntity(right);
-            this.level.addFreshEntity(left);
+            this.getCommandSenderWorld().addFreshEntity(right);
+            this.getCommandSenderWorld().addFreshEntity(left);
         }
         this.discard();
     }

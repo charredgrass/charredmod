@@ -1,10 +1,10 @@
 # CharredMod
 
-A mod for me to use as a sandbox. For Minecraft 1.19.4 Java using Forge.
+A mod for me to use as a sandbox. For Minecraft 1.20.1 Java using Forge.
 
 ## Dependencies
 
-Minecraft Forge 1.19.4 - 45.0.25
+Minecraft Forge 1.20.1 - 47.0.43
 
 ## Installation
 

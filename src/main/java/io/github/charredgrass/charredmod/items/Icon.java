@@ -18,7 +18,7 @@ public class Icon extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-        if (player.level.isClientSide()) {
+        if (player.getCommandSenderWorld().isClientSide()) {
             Minecraft.getInstance().setScreen(new LauncherScreen());
         }
         return super.use(world, player, hand);

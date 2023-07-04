@@ -51,11 +51,11 @@ public class LauncherScreen extends Screen {
         this.addRenderableWidget(tib);
     }
 
-    @Override
-    public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
-        this.renderBackground(pose);
-        super.render(pose, mouseX, mouseY, partialTick);
-    }
+//    @Override
+//    public void render(PoseStack pose, int mouseX, int mouseY, float partialTick) {
+//        this.renderBackground(pose);
+//        super.render(pose, mouseX, mouseY, partialTick);
+//    }
 
     @Override
     public boolean isPauseScreen() {

@@ -26,7 +26,7 @@ public class ExplodingArrowEntity extends BaseArrow {
     }
 
     private void boom() {
-        this.level.explode(this, this.getX(), this.getY(), this.getZ(), 1.0F, true, Level.ExplosionInteraction.TNT);
+        this.getCommandSenderWorld().explode(this, this.getX(), this.getY(), this.getZ(), 1.0F, true, Level.ExplosionInteraction.TNT);
         this.discard();
     }
 
